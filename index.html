@@ -93,24 +93,28 @@
       
       <!-- Tab Navigation Switcher -->
       <div class="flex items-center justify-between flex-wrap gap-3">
-        <div class="inline-flex p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-2xl text-xs sm:text-sm font-semibold">
-          <button class="tab-switch-btn flex items-center gap-2 px-3.5 py-2 rounded-xl bg-primary-600 text-white shadow-sm transition" data-tab="quiz">
+        <div class="inline-flex p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-2xl text-xs sm:text-sm font-semibold overflow-x-auto max-w-full">
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-primary-600 text-white shadow-sm transition shrink-0" data-tab="quiz">
             <i data-lucide="check-square" class="w-4 h-4"></i>
             <span>Luyện Trắc Nghiệm</span>
           </button>
-          <button class="tab-switch-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition" data-tab="list">
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-amber-700 dark:text-amber-400 hover:bg-amber-100/60 dark:hover:bg-amber-950/40 transition shrink-0 font-bold" data-tab="formula-quiz" title="Chuyên đề kiểm tra ghi nhớ công thức 4 chương">
+            <i data-lucide="zap" class="w-4 h-4 text-amber-500 fill-amber-500"></i>
+            <span>TN Công Thức</span>
+          </button>
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition shrink-0" data-tab="list">
             <i data-lucide="book-open" class="w-4 h-4"></i>
             <span>Sổ Tay Công Thức</span>
           </button>
-          <button class="tab-switch-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition" data-tab="flashcards">
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition shrink-0" data-tab="flashcards">
             <i data-lucide="layers" class="w-4 h-4"></i>
             <span>Flashcards</span>
           </button>
-          <button class="tab-switch-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition" data-tab="calc">
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition shrink-0" data-tab="calc">
             <i data-lucide="calculator" class="w-4 h-4"></i>
             <span>Máy Tính Nhanh</span>
           </button>
-          <button class="tab-switch-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition" data-tab="cheatsheet">
+          <button class="tab-switch-btn flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition shrink-0" data-tab="cheatsheet">
             <i data-lucide="file-text" class="w-4 h-4"></i>
             <span>Bảng Tóm Tắt</span>
           </button>
@@ -226,6 +230,8 @@
                 <option value="10" selected>10 câu (Tiêu chuẩn)</option>
                 <option value="15">15 câu (Đầy đủ chương)</option>
                 <option value="20">20 câu (Luyện chuyên sâu)</option>
+                <option value="25">25 câu (Tổng ôn)</option>
+                <option value="30">30 câu (Đề thi chuẩn)</option>
                 <option value="all">Tất cả câu hiện có</option>
               </select>
             </div>
@@ -235,6 +241,7 @@
               <span class="text-xs font-bold uppercase tracking-wider text-slate-400 shrink-0">Dạng câu:</span>
               <select id="quiz-type-filter" class="w-full sm:w-auto text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="all">Tất cả dạng câu (TN & Điền số)</option>
+                <option value="formula">⚡ Chuyên đề Công thức (Đúng/Sai)</option>
                 <option value="multiple_choice">Trắc nghiệm 4 lựa chọn (A, B, C, D)</option>
                 <option value="short_answer">Điền số kết quả (Trả lời ngắn)</option>
               </select>
@@ -264,14 +271,47 @@
         <!-- Chapter Selection Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5" id="quiz-chapter-cards">
           
+          <!-- MỤC MỚI: CHUYÊN ĐỀ TRẮC NGHIỆM CÔNG THỨC (NỔI BẬT) -->
+          <div class="col-span-1 md:col-span-2 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border-2 border-amber-400 dark:border-amber-500/60 rounded-3xl p-6 sm:p-7 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group hover:shadow-lg transition">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm">
+                  <i data-lucide="zap" class="w-3.5 h-3.5 fill-white"></i> MỤC MỚI: CHUYÊN ĐỀ CÔNG THỨC
+                </span>
+                <span class="text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2.5 py-0.5 rounded-lg border border-amber-300 dark:border-amber-800">
+                  49 câu công thức cốt lõi cả 4 chương
+                </span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                Trắc Nghiệm Ghi Nhớ & Phân Biệt Công Thức
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+                Rèn luyện phản xạ nhận biết công thức đúng/sai, hệ thức độc lập thời gian, điều kiện sóng dừng & giao thoa, công thức điện trường và định luật Ôm toàn mạch.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1 text-[11px] text-amber-800 dark:text-amber-200 font-medium">
+                <span class="px-2 py-0.5 rounded bg-amber-100/80 dark:bg-amber-900/40">#NhớCôngThức</span>
+                <span class="px-2 py-0.5 rounded bg-amber-100/80 dark:bg-amber-900/40">#ĐúngSai</span>
+                <span class="px-2 py-0.5 rounded bg-amber-100/80 dark:bg-amber-900/40">#HệThứcĐộcLập</span>
+                <span class="px-2 py-0.5 rounded bg-amber-100/80 dark:bg-amber-900/40">#4ChươngVậtLí11</span>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-3 shrink-0 w-full md:w-auto">
+              <span class="text-xs text-slate-400" id="stat-formula">Chưa làm</span>
+              <button class="start-quiz-btn px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-sm shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-2" data-chapter="formula">
+                <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+                <span>Luyện Công Thức Ngay</span>
+              </button>
+            </div>
+          </div>
+
           <!-- CHƯƠNG 1 -->
           <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border-l-4 border-l-blue-500">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
-                  Chương I · 19 câu (15 TN + 4 Điền số)
+                  Chương I · 31 câu ngân hàng (TN, Điền số & Công thức)
                 </span>
-                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 19 câu</span>
+                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 30 câu</span>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 Dao Động Điều Hòa
@@ -299,9 +339,9 @@
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900">
-                  Chương II · 19 câu (15 TN + 4 Điền số)
+                  Chương II · 31 câu ngân hàng (TN, Điền số & Công thức)
                 </span>
-                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 19 câu</span>
+                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 30 câu</span>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 Sóng Cơ & Sóng Điện Từ
@@ -329,9 +369,9 @@
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-900">
-                  Chương III · 19 câu (15 TN + 4 Điền số)
+                  Chương III · 31 câu ngân hàng (TN, Điền số & Công thức)
                 </span>
-                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 19 câu</span>
+                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 30 câu</span>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                 Điện Trường & Tụ Điện
@@ -359,9 +399,9 @@
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-900">
-                  Chương IV · 19 câu (15 TN + 4 Điền số)
+                  Chương IV · 31 câu ngân hàng (TN, Điền số & Công thức)
                 </span>
-                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 19 câu</span>
+                <span class="text-xs text-slate-400 font-medium">Tùy chọn: 5 - 30 câu</span>
               </div>
               <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                 Dòng Điện Không Đổi & Mạch Điện
@@ -390,11 +430,11 @@
         <div class="bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-slate-900 dark:to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
           <div class="space-y-2 text-center sm:text-left">
             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-slate-950">
-              🏆 ĐỀ TỔNG HỢP TOÀN DIỆN (76 CÂU NGÂN HÀNG)
+              🏆 ĐỀ TỔNG HỢP TOÀN DIỆN (124 CÂU NGÂN HÀNG)
             </span>
             <h3 class="text-2xl font-black">Thi Thử Học Kì & Đánh Giá Năng Lực</h3>
             <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
-              Bộ đề kiểm tra toàn diện 4 chương Vật lí 11 với cấu trúc phân hóa chuẩn Bộ GD&ĐT gồm trắc nghiệm 4 lựa chọn và trắc nghiệm trả lời ngắn (điền kết quả).
+              Bộ đề kiểm tra toàn diện 4 chương Vật lí 11 với cấu trúc phân hóa chuẩn Bộ GD&ĐT gồm trắc nghiệm 4 lựa chọn, trắc nghiệm trả lời ngắn (điền kết quả) và trắc nghiệm nhận biết công thức.
             </p>
           </div>
           <button class="start-quiz-btn shrink-0 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-extrabold text-sm shadow-lg shadow-indigo-500/25 transition flex items-center gap-2" data-chapter="all">
@@ -654,7 +694,7 @@
                 <span id="fc-back-lesson" class="text-xs font-semibold text-slate-400"></span>
                 <span class="text-xs font-semibold text-blue-600 dark:text-blue-400">Đáp án công thức</span>
               </div>
-              <div id="fc-back-formula" class="my-4 py-3 bg-blue-50/70 dark:bg-blue-950/40 rounded-2xl text-center text-blue-700 dark:text-blue-300 font-bold overflow-x-auto text-xl">
+              <div id="fc-back-formula" class="math-scroll-container my-4 py-3 bg-blue-50/70 dark:bg-blue-950/40 rounded-2xl text-blue-700 dark:text-blue-300 font-bold text-lg sm:text-xl">
                 <!-- Formula KaTeX -->
               </div>
               <div id="fc-back-vars" class="space-y-1 mb-3">

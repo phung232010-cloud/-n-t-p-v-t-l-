@@ -175,12 +175,28 @@ document.addEventListener("DOMContentLoaded", () => {
     tabButtons.forEach(btn => {
       if (btn.dataset.tab === tab) {
         btn.classList.add("bg-primary-600", "text-white", "shadow-sm");
-        btn.classList.remove("text-slate-600", "dark:text-slate-300", "hover:bg-slate-100", "dark:hover:bg-slate-800");
+        btn.classList.remove("text-slate-600", "dark:text-slate-300", "text-amber-700", "dark:text-amber-400", "hover:bg-slate-100", "dark:hover:bg-slate-800", "hover:bg-amber-100/60");
       } else {
         btn.classList.remove("bg-primary-600", "text-white", "shadow-sm");
-        btn.classList.add("text-slate-600", "dark:text-slate-300", "hover:bg-slate-100", "dark:hover:bg-slate-800");
+        if (btn.dataset.tab === "formula-quiz") {
+          btn.classList.add("text-amber-700", "dark:text-amber-400", "hover:bg-amber-100/60");
+        } else {
+          btn.classList.add("text-slate-600", "dark:text-slate-300", "hover:bg-slate-100", "dark:hover:bg-slate-800");
+        }
       }
     });
+
+    if (tab === "formula-quiz") {
+      viewQuiz.classList.remove("hidden");
+      viewList.classList.add("hidden");
+      viewFlashcards.classList.add("hidden");
+      viewCalc.classList.add("hidden");
+      viewCheatsheet.classList.add("hidden");
+      if (listControls) listControls.classList.add("hidden");
+      startQuiz("formula");
+      refreshIcons();
+      return;
+    }
 
     viewQuiz.classList.toggle("hidden", tab !== "quiz");
     viewList.classList.toggle("hidden", tab !== "list");
@@ -331,11 +347,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (item.derivativesLatex && item.derivativesLatex.length > 0) {
         derivativesHtml = `
           <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Hệ quả & Công thức liên quan</div>
-            <div class="flex flex-wrap gap-2">
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-blue-500"></i>
+              <span>Hệ quả & Công thức liên quan</span>
+            </div>
+            <div class="space-y-1.5">
               ${item.derivativesLatex.map(d => `
-                <div class="bg-slate-50 dark:bg-slate-800/80 px-3 py-1.5 rounded-lg text-sm text-slate-800 dark:text-slate-200 border border-slate-100 dark:border-slate-700 font-mono">
-                  $${d}$
+                <div class="w-full bg-slate-50 dark:bg-slate-800/80 px-3 py-2 rounded-xl text-xs sm:text-sm text-slate-800 dark:text-slate-200 border border-slate-100 dark:border-slate-700 font-mono overflow-x-auto touch-scroll flex items-center">
+                  <div class="min-w-0 max-w-full overflow-x-auto py-0.5">
+                    $${d}$
+                  </div>
                 </div>
               `).join("")}
             </div>
@@ -345,20 +366,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Variables table HTML
       const varsHtml = `
-        <div class="mt-4 overflow-x-auto">
-          <table class="w-full text-xs text-left">
+        <div class="mt-4 overflow-x-auto touch-scroll">
+          <table class="w-full min-w-[280px] text-xs text-left">
             <thead>
-              <tr class="text-slate-400 border-b border-slate-100 dark:border-slate-800">
-                <th class="pb-1.5 font-medium">Kí hiệu</th>
+              <tr class="text-slate-400 border-b border-slate-100 dark:border-slate-800 text-[11px]">
+                <th class="pb-1.5 font-medium w-16">Kí hiệu</th>
                 <th class="pb-1.5 font-medium">Đại lượng</th>
-                <th class="pb-1.5 font-medium text-right">Đơn vị chuẩn</th>
+                <th class="pb-1.5 font-medium text-right w-24">Đơn vị chuẩn</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 dark:divide-slate-800/50">
               ${item.variables.map(v => `
                 <tr class="text-slate-700 dark:text-slate-300">
-                  <td class="py-1.5 font-semibold text-blue-600 dark:text-blue-400 pr-2">$${v.sym}$</td>
-                  <td class="py-1.5 pr-2">${v.name}</td>
+                  <td class="py-1.5 font-semibold text-blue-600 dark:text-blue-400 pr-2 whitespace-nowrap">$${v.sym}$</td>
+                  <td class="py-1.5 pr-2 leading-relaxed">${v.name}</td>
                   <td class="py-1.5 text-right font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">${v.unit}</td>
                 </tr>
               `).join("")}
@@ -404,8 +425,10 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <!-- Main Formula Display -->
-          <div class="my-3 py-3 px-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-800 text-center flex items-center justify-center overflow-x-auto text-blue-700 dark:text-blue-300 font-bold text-lg">
-            $$${item.formulaLatex}$$
+          <div class="math-scroll-container my-3 py-3 px-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-800 text-blue-700 dark:text-blue-300 font-bold text-base sm:text-lg">
+            <div class="math-inner">
+              $$${item.formulaLatex}$$
+            </div>
           </div>
 
           <!-- Derivatives -->
@@ -515,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Back content
     fcBackLesson.textContent = currentItem.lesson;
-    fcBackFormula.innerHTML = `$$${currentItem.formulaLatex}$$`;
+    fcBackFormula.innerHTML = `<div class="math-inner">$$${currentItem.formulaLatex}$$</div>`;
     
     // Back variables preview
     fcBackVars.innerHTML = currentItem.variables.slice(0, 3).map(v => `
@@ -732,8 +755,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Update chapter statistics
-    [1, 2, 3, 4].forEach(ch => {
-      const statEl = document.getElementById(`stat-c${ch}`);
+    [1, 2, 3, 4, "formula"].forEach(ch => {
+      const statEl = (ch === "formula") 
+        ? document.getElementById("stat-formula") 
+        : document.getElementById(`stat-c${ch}`);
       if (statEl) {
         if (chapterScores[ch] !== undefined) {
           statEl.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-bold">Điểm cao nhất: ${chapterScores[ch]}/10</span>`;
@@ -755,10 +780,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 1. Filter questions by chapter, level, and question type
     let candidates = quizData.filter(q => {
-      if (chapterId !== "all" && q.chapterId.toString() !== chapterId) return false;
+      if (chapterId === "formula") {
+        if (!q.isFormula) return false;
+      } else if (chapterId !== "all" && q.chapterId.toString() !== chapterId) {
+        return false;
+      }
       if (quizLevelFilter !== "all" && q.level !== quizLevelFilter) return false;
       if (quizTypeFilter === "multiple_choice" && q.type === "short_answer") return false;
       if (quizTypeFilter === "short_answer" && q.type !== "short_answer") return false;
+      if (quizTypeFilter === "formula" && !q.isFormula) return false;
       return true;
     });
 
@@ -805,7 +835,8 @@ document.addEventListener("DOMContentLoaded", () => {
       2: "Chương II: Sóng cơ & Sóng điện từ",
       3: "Chương III: Điện trường",
       4: "Chương IV: Dòng điện không đổi & Mạch điện",
-      all: "Đề Thi Tổng Hợp Cả 4 Chương"
+      all: "Đề Thi Tổng Hợp Cả 4 Chương",
+      formula: "⚡ Chuyên Đề: Trắc Nghiệm Công Thức (4 Chương)"
     };
     quizHeaderTitle.textContent = `${chapterNames[chapterId] || "Luyện trắc nghiệm"} (${activeQuizList.length} câu)`;
     quizHeaderModeBadge.textContent = (quizMode === "practice") ? "⚡ Chế độ Luyện tập (Xem giải ngay)" : `⏱️ Chế độ Thi thử (${Math.round(quizSecondsLeft/60)} phút)`;
@@ -1024,6 +1055,7 @@ document.addEventListener("DOMContentLoaded", () => {
           quizResultAlert.className = "p-3.5 rounded-xl font-bold text-sm mb-3 flex items-center gap-2 bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 border border-rose-300 dark:border-rose-800";
           quizResultAlert.innerHTML = `<i data-lucide="x-circle" class="w-5 h-5 text-rose-600"></i> Chưa chính xác! Bạn đã nhập: ${selectedOpt} ${currentQ.unit}. Đáp án đúng là: ${currentQ.correctValue} ${currentQ.unit}.`;
         }
+        quizExplanationText.className = "text-xs text-slate-700 dark:text-slate-200 leading-relaxed overflow-x-auto touch-scroll";
         quizExplanationText.innerHTML = currentQ.explanation;
       } else {
         quizExplanationBox.classList.add("hidden");
@@ -1060,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", () => {
               ? 'bg-blue-600 text-white' 
               : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
           }">${opt.id}</span>
-          <div class="pt-0.5 leading-relaxed">${opt.text}</div>
+          <div class="pt-0.5 leading-relaxed flex-1 overflow-x-auto touch-scroll">${opt.text}</div>
         `;
 
         optBtn.addEventListener("click", () => {
@@ -1346,7 +1378,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return `
                   <div class="p-2.5 rounded-xl border ${optBorder} flex items-start gap-2">
                     <span class="font-bold shrink-0">${opt.id}.</span>
-                    <span>${opt.text}</span>
+                    <span class="flex-1 overflow-x-auto touch-scroll">${opt.text}</span>
                   </div>
                 `;
               }).join("")}
@@ -1359,7 +1391,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="font-bold text-blue-600 dark:text-blue-400 mb-1 flex items-center gap-1">
             <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Lời giải chi tiết:
           </div>
-          <div class="whitespace-pre-line leading-relaxed">${q.explanation}</div>
+          <div class="whitespace-pre-line leading-relaxed overflow-x-auto touch-scroll">${q.explanation}</div>
         </div>
       `;
 
@@ -1475,8 +1507,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="mb-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white">${preset.name}</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">${preset.desc}</p>
-          <div class="my-3 py-2 px-4 bg-slate-50 dark:bg-slate-800 rounded-xl text-blue-600 dark:text-blue-300 font-semibold text-center overflow-x-auto">
-            $$${preset.formula}$$
+          <div class="math-scroll-container my-3 py-2 px-3 bg-slate-50 dark:bg-slate-800 rounded-xl text-blue-600 dark:text-blue-300 font-semibold text-sm sm:text-base">
+            <div class="math-inner">
+              $$${preset.formula}$$
+            </div>
           </div>
         </div>
 
@@ -1519,8 +1553,10 @@ document.addEventListener("DOMContentLoaded", () => {
             ${calculation.step ? `
               <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
                 <span class="text-xs text-slate-400 block mb-1">Bước thế số chi tiết:</span>
-                <div class="text-xs font-mono text-slate-700 dark:text-slate-300 overflow-x-auto py-1">
-                  $$${calculation.step}$$
+                <div class="math-scroll-container text-xs font-mono text-slate-700 dark:text-slate-300 py-1">
+                  <div class="math-inner">
+                    $$${calculation.step}$$
+                  </div>
                 </div>
               </div>
             ` : ""}
@@ -1572,8 +1608,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${items.map(item => `
                   <div class="p-3.5 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
                     <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">${item.name}</div>
-                    <div class="font-bold text-slate-900 dark:text-white py-1.5 overflow-x-auto">
-                      $$${item.formulaLatex}$$
+                    <div class="math-scroll-container font-bold text-slate-900 dark:text-white py-1 text-sm sm:text-base">
+                      <div class="math-inner">
+                        $$${item.formulaLatex}$$
+                      </div>
                     </div>
                     ${item.derivativesLatex && item.derivativesLatex.length > 0 ? `
                       <div class="text-[11px] text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-700/50 pt-1.5 mt-1.5">

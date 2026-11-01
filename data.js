@@ -131,7 +131,7 @@ const physicsData = [
     chapterName: "Chương I: Dao động",
     lesson: "Bài 4: Năng lượng trong dao động điều hòa",
     name: "Động năng, thế năng và cơ năng",
-    formulaLatex: "W = W_đ + W_t = \\frac{1}{2}m v^2 + \\frac{1}{2}m \\omega^2 x^2 = \\frac{1}{2}m \\omega^2 A^2 = \\text{hằng số}",
+    formulaLatex: "W = W_đ + W_t = \\frac{1}{2}m v^2 + \\frac{1}{2}m \\omega^2 x^2 = \\frac{1}{2}m \\omega^2 A^2",
     derivativesLatex: [
       "W_đ = \\frac{1}{2} m v^2 = \\frac{1}{2} m \\omega^2 A^2 \\sin^2(\\omega t + \\varphi)",
       "W_t = \\frac{1}{2} k x^2 = \\frac{1}{2} m \\omega^2 x^2 = \\frac{1}{2} m \\omega^2 A^2 \\cos^2(\\omega t + \\varphi)",
@@ -157,11 +157,11 @@ const physicsData = [
     chapterName: "Chương I: Dao động",
     lesson: "Bài 5: Con lắc lò xo",
     name: "Tần số góc và chu kì của con lắc lò xo",
-    formulaLatex: "\\omega = \\sqrt{\\frac{k}{m}} \\implies T = 2\\pi \\sqrt{\\frac{m}{k}} \\implies f = \\frac{1}{2\\pi} \\sqrt{\\frac{k}{m}}",
+    formulaLatex: "\\omega = \\sqrt{\\frac{k}{m}} \\implies T = 2\\pi \\sqrt{\\frac{m}{k}} = \\frac{1}{f}",
     derivativesLatex: [
-      "\\text{Lò xo treo thẳng đứng: } \\Delta l_0 = \\frac{mg}{k} \\implies \\omega = \\sqrt{\\frac{g}{\\Delta l_0}} \\implies T = 2\\pi \\sqrt{\\frac{\\Delta l_0}{g}}",
-      "\\text{Lực kéo về (hồi phục): } F_{kv} = -kx = -m\\omega^2 x",
-      "F_{kv\\max} = kA = m\\omega^2 A \\quad \\text{(tại biên)}"
+      "\\text{Treo thẳng đứng: } \\Delta l_0 = \\frac{mg}{k} \\implies T = 2\\pi \\sqrt{\\frac{\\Delta l_0}{g}}",
+      "\\text{Lực kéo về: } F_{kv} = -kx = -m\\omega^2 x",
+      "F_{kv\\max} = kA = m\\omega^2 A \\quad (\\text{tại biên})"
     ],
     variables: [
       { sym: "k", name: "Độ cứng lò xo", unit: "N/m" },
@@ -182,11 +182,11 @@ const physicsData = [
     chapterName: "Chương I: Dao động",
     lesson: "Bài 5 & Đọc thêm: Con lắc đơn",
     name: "Chu kì và tần số của con lắc đơn",
-    formulaLatex: "T = 2\\pi \\sqrt{\\frac{l}{g}} \\implies \\omega = \\sqrt{\\frac{g}{l}} \\implies f = \\frac{1}{2\\pi} \\sqrt{\\frac{g}{l}}",
+    formulaLatex: "T = 2\\pi \\sqrt{\\frac{l}{g}} \\implies \\omega = \\sqrt{\\frac{g}{l}} = \\frac{2\\pi}{T}",
     derivativesLatex: [
       "s = s_0 \\cos(\\omega t + \\varphi) \\quad (s_0 = l \\cdot \\alpha_0)",
       "\\alpha = \\alpha_0 \\cos(\\omega t + \\varphi) \\quad (\\alpha_0 \\le 10^\\circ \\approx 0{,}174 \\text{ rad})",
-      "v = \\pm \\sqrt{2gl(\\cos\\alpha - \\cos\\alpha_0)} \\implies v_{\\max} = s_0\\omega = \\sqrt{2gl(1 - \\cos\\alpha_0)}"
+      "v_{\\max} = s_0\\omega = \\sqrt{2gl(1 - \\cos\\alpha_0)}"
     ],
     variables: [
       { sym: "l", name: "Chiều dài dây treo", unit: "m" },
@@ -280,10 +280,10 @@ const physicsData = [
     chapterName: "Chương II: Sóng",
     lesson: "Bài 9: Giao thoa sóng cơ",
     name: "Điều kiện cực đại và cực tiểu giao thoa (2 nguồn cùng pha)",
-    formulaLatex: "d_2 - d_1 = k \\lambda \\quad (\\text{Cực đại}) \\quad ; \\quad d_2 - d_1 = \\left(k + \\frac{1}{2}\\right)\\lambda \\quad (\\text{Cực tiểu})",
+    formulaLatex: "\\begin{cases} d_2 - d_1 = k\\lambda & (\\text{Cực đại}) \\\\[4pt] d_2 - d_1 = \\left(k + \\dfrac{1}{2}\\right)\\lambda & (\\text{Cực tiểu}) \\end{cases}",
     derivativesLatex: [
-      "\\text{Biên độ tổng hợp tại M: } A_M = 2A \\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|",
-      "\\text{Khoảng cách giữa 2 cực đại (hoặc cực tiểu) liên tiếp trên đoạn } S_1S_2: \\frac{\\lambda}{2}",
+      "\\text{Biên độ tại M: } A_M = 2A \\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|",
+      "\\text{Khoảng cách 2 cực đại liên tiếp trên } S_1S_2: \\frac{\\lambda}{2}",
       "\\text{Số cực đại trên đoạn } S_1S_2: -\\frac{S_1S_2}{\\lambda} < k < \\frac{S_1S_2}{\\lambda} \\quad (k \\in \\mathbb{Z})"
     ],
     variables: [
@@ -303,11 +303,11 @@ const physicsData = [
     chapterName: "Chương II: Sóng",
     lesson: "Bài 10: Sóng dừng",
     name: "Điều kiện có sóng dừng trên dây",
-    formulaLatex: "L = k \\frac{\\lambda}{2} \\quad (\\text{2 đầu cố định}) \\quad ; \\quad L = (2k + 1)\\frac{\\lambda}{4} \\quad (\\text{1 đầu cố định, 1 đầu tự do})",
+    formulaLatex: "\\begin{cases} L = k \\dfrac{\\lambda}{2} & (\\text{2 đầu cố định}) \\\\[4pt] L = (2k + 1)\\dfrac{\\lambda}{4} & (\\text{1 đầu tự do, 1 đầu cố định}) \\end{cases}",
     derivativesLatex: [
-      "\\text{Dây 2 đầu cố định: } k = \\text{Số bụng sóng; } k+1 = \\text{Số nút sóng}",
-      "\\text{Dây 1 đầu cố định, 1 đầu tự do: } k = \\text{Số bó sóng; } k+1 = \\text{Số bụng = Số nút}",
-      "\\text{Khoảng cách giữa 2 nút (hoặc 2 bụng) liên tiếp: } \\frac{\\lambda}{2}",
+      "\\text{2 đầu cố định: } k = \\text{Số bụng; } k+1 = \\text{Số nút}",
+      "\\text{1 đầu tự do: } k = \\text{Số bó; } k+1 = \\text{Số bụng = Số nút}",
+      "\\text{Khoảng cách 2 nút (hoặc 2 bụng) liên tiếp: } \\frac{\\lambda}{2}",
       "\\text{Khoảng cách giữa nút và bụng gần nhất: } \\frac{\\lambda}{4}"
     ],
     variables: [
@@ -327,9 +327,9 @@ const physicsData = [
     chapterName: "Chương II: Sóng",
     lesson: "Bài 11: Giao thoa ánh sáng (Thí nghiệm Young)",
     name: "Khoảng vân và vị trí vân sáng, vân tối",
-    formulaLatex: "i = \\frac{\\lambda D}{a} \\implies x_s = k \\cdot i = k \\frac{\\lambda D}{a} \\quad ; \\quad x_t = \\left(k + \\frac{1}{2}\\right) i = \\left(k + \\frac{1}{2}\\right)\\frac{\\lambda D}{a}",
+    formulaLatex: "i = \\frac{\\lambda D}{a} \\implies \\begin{cases} x_s = k \\cdot i = k \\dfrac{\\lambda D}{a} & (\\text{Vân sáng}) \\\\[4pt] x_t = \\left(k + \\dfrac{1}{2}\\right) i & (\\text{Vân tối}) \\end{cases}",
     derivativesLatex: [
-      "\\lambda = \\frac{a \\cdot i}{D}",
+      "\\lambda = \\frac{a \\cdot i}{D} \\implies a = \\frac{\\lambda D}{i}",
       "\\text{Bề rộng vùng giao thoa L: } N_s = 2\\left[\\frac{L}{2i}\\right] + 1",
       "\\text{Bề rộng quang phổ bậc } k: \\Delta x_k = k \\frac{D}{a} (\\lambda_{\\text{đỏ}} - \\lambda_{\\text{tím}})"
     ],
@@ -479,11 +479,11 @@ const physicsData = [
     chapterName: "Chương III: Điện trường",
     lesson: "Bài 21: Tụ điện và năng lượng điện trường",
     name: "Điện dung của tụ điện & Năng lượng điện trường",
-    formulaLatex: "C = \\frac{Q}{U} \\quad ; \\quad W = \\frac{1}{2} C U^2 = \\frac{1}{2} Q U = \\frac{Q^2}{2 C}",
+    formulaLatex: "\\begin{cases} C = \\dfrac{Q}{U} \\\\[4pt] W = \\dfrac{1}{2}CU^2 = \\dfrac{1}{2}QU = \\dfrac{Q^2}{2C} \\end{cases}",
     derivativesLatex: [
-      "\\text{Tụ phẳng: } C = \\frac{\\varepsilon S}{4\\pi k d} = \\frac{\\varepsilon \\varepsilon_0 S}{d}",
-      "\\text{Ghép nối tiếp: } \\frac{1}{C_b} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots \\ ; \\ Q_b = Q_1 = Q_2 \\ ; \\ U_b = U_1 + U_2",
-      "\\text{Ghép song song: } C_b = C_1 + C_2 + \\dots \\ ; \\ U_b = U_1 = U_2 \\ ; \\ Q_b = Q_1 + Q_2"
+      "\\text{Tụ phẳng: } C = \\frac{\\varepsilon S}{4\\pi k d}",
+      "\\text{Ghép nối tiếp: } \\frac{1}{C_b} = \\frac{1}{C_1} + \\frac{1}{C_2} \\ ; \\ Q_b = Q_1 = Q_2",
+      "\\text{Ghép song song: } C_b = C_1 + C_2 \\ ; \\ U_b = U_1 = U_2"
     ],
     variables: [
       { sym: "C", name: "Điện dung của tụ điện", unit: "F (Fara)" },
@@ -508,7 +508,7 @@ const physicsData = [
     chapterName: "Chương IV: Mạch điện & Dòng điện không đổi",
     lesson: "Bài 22: Cường độ dòng điện",
     name: "Định nghĩa Cường độ dòng điện & Dòng điện trong kim loại",
-    formulaLatex: "I = \\frac{\\Delta q}{\\Delta t} = \\frac{q}{t} \\quad ; \\quad I = n \\cdot S \\cdot v \\cdot e",
+    formulaLatex: "\\begin{cases} I = \\dfrac{\\Delta q}{\\Delta t} = \\dfrac{q}{t} \\\\[4pt] I = n \\cdot S \\cdot v \\cdot e \\end{cases}",
     derivativesLatex: [
       "q = I \\cdot t = N_e \\cdot e \\implies N_e = \\frac{I \\cdot t}{e}",
       "\\text{Mật độ dòng điện: } j = \\frac{I}{S} = n \\cdot v \\cdot e"
@@ -535,11 +535,11 @@ const physicsData = [
     chapterName: "Chương IV: Mạch điện & Dòng điện không đổi",
     lesson: "Bài 23: Điện trở và Định luật Ôm cho đoạn mạch",
     name: "Định luật Ôm cho đoạn mạch & Điện trở dây dẫn",
-    formulaLatex: "I = \\frac{U}{R} \\implies R = \\frac{U}{I} \\quad ; \\quad R = \\rho \\frac{l}{S}",
+    formulaLatex: "\\begin{cases} I = \\dfrac{U}{R} \\implies R = \\dfrac{U}{I} \\\\[4pt] R = \\rho \\dfrac{l}{S} \\end{cases}",
     derivativesLatex: [
-      "\\text{Phụ thuộc nhiệt độ: } R = R_0[1 + \\alpha(t - t_0)] \\quad ; \\quad \\rho = \\rho_0[1 + \\alpha(t - t_0)]",
-      "\\text{Mắc nối tiếp: } R_{nt} = R_1 + R_2 + \\dots \\ ; \\ I = I_1 = I_2 \\ ; \\ U = U_1 + U_2",
-      "\\text{Mắc song song: } \\frac{1}{R_{ss}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots \\ ; \\ U = U_1 = U_2 \\ ; \\ I = I_1 + I_2"
+      "\\text{Theo nhiệt độ: } R = R_0[1 + \\alpha(t - t_0)]",
+      "\\text{Mắc nối tiếp: } R_{nt} = R_1 + R_2 + \\dots \\ ; \\ I_1 = I_2",
+      "\\text{Mắc song song: } \\frac{1}{R_{ss}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\ ; \\ U_1 = U_2"
     ],
     variables: [
       { sym: "R", name: "Điện trở của vật dẫn", unit: "\\Omega (Ôm)" },
@@ -611,12 +611,12 @@ const physicsData = [
     chapterName: "Chương IV: Mạch điện & Dòng điện không đổi",
     lesson: "Bài 26: Năng lượng và công suất điện",
     name: "Công và Công suất của dòng điện & Định luật Joule - Lenz",
-    formulaLatex: "A = U I t \\quad ; \\quad \\mathcal{P} = \\frac{A}{t} = U I = I^2 R = \\frac{U^2}{R}",
+    formulaLatex: "\\begin{cases} A = U I t \\\\[4pt] \\mathcal{P} = \\dfrac{A}{t} = U I = I^2 R = \\dfrac{U^2}{R} \\end{cases}",
     derivativesLatex: [
-      "\\text{Nhiệt lượng tỏa ra (Joule-Lenz): } Q = R I^2 t = \\frac{U^2}{R} t",
-      "\\text{Công của nguồn điện: } A_{\\text{ng}} = \\mathcal{E} I t \\implies \\mathcal{P}_{\\text{ng}} = \\mathcal{E} I",
-      "\\text{Hiệu suất nguồn điện: } H = \\frac{A_{\\text{ích}}}{A_{\\text{tp}}} = \\frac{U_N I t}{\\mathcal{E} I t} = \\frac{U_N}{\\mathcal{E}} = \\frac{R_N}{R_N + r}",
-      "\\text{Công suất cực đại mạch ngoài khi } R_N = r: \\mathcal{P}_{N\\max} = \\frac{\\mathcal{E}^2}{4r}"
+      "\\text{Định luật Joule-Lenz: } Q = R I^2 t = \\frac{U^2}{R} t",
+      "\\text{Công và công suất nguồn: } A_{\\text{ng}} = \\mathcal{E} I t \\implies \\mathcal{P}_{\\text{ng}} = \\mathcal{E} I",
+      "\\text{Hiệu suất nguồn: } H = \\frac{U_N}{\\mathcal{E}} = \\frac{R_N}{R_N + r}",
+      "\\text{Công suất cực đại khi } R_N = r: \\mathcal{P}_{N\\max} = \\frac{\\mathcal{E}^2}{4r}"
     ],
     variables: [
       { sym: "A", name: "Điện năng tiêu thụ của đoạn mạch", unit: "J (hoặc kW.h, 1 kW.h = 3.600.000 J)" },

@@ -36,7 +36,11 @@ Ngay trên mỗi câu hỏi trả lời ngắn, hệ thống đều có bảng h
   - **20 câu:** Luyện đề chuyên sâu (khoảng 30 phút)
   - **Tất cả câu hỏi:** Làm toàn bộ kho câu hỏi hiện có trong hệ thống
 - 🎯 **Lọc theo dạng câu hỏi:**
-  - Có thể chọn chỉ luyện dạng *Trắc nghiệm 4 phương án*, hoặc chỉ luyện dạng *Trả lời ngắn (Điền số)*, hoặc làm cả hai dạng kết hợp.
+  - Có thể chọn:
+    - *Tất cả dạng câu* (kết hợp)
+    - *⚡ Chuyên đề Công thức (Đúng/Sai)*: Chuyên rèn phản xạ nhận biết và phân biệt công thức
+    - *Trắc nghiệm 4 phương án (A, B, C, D)*
+    - *Trả lời ngắn (Điền số kết quả)*
 - 🎲 **Tự động đảo lộn khi làm lại:**
   - Thứ tự các câu hỏi được xáo trộn ngẫu nhiên hoàn toàn (Fisher-Yates shuffle).
   - Thứ tự các phương án **A, B, C, D** cũng được hoán vị ngẫu nhiên và tự động cập nhật lại vị trí đáp án đúng để chống học vẹt.
@@ -44,15 +48,34 @@ Ngay trên mỗi câu hỏi trả lời ngắn, hệ thống đều có bảng h
 
 ---
 
-## 🎯 Hệ Thống 4 Chương Chi Tiết (76 Câu Ngân Hàng Chuẩn)
-- **Chương I: Dao Động Điều Hòa** (19 câu: 15 trắc nghiệm + 4 câu điền số)
-- **Chương II: Sóng Cơ & Sóng Điện Từ** (19 câu: 15 trắc nghiệm + 4 câu điền số)
-- **Chương III: Điện Trường & Tụ Điện** (19 câu: 15 trắc nghiệm + 4 câu điền số)
-- **Chương IV: Dòng Điện Không Đổi & Mạch Điện** (19 câu: 15 trắc nghiệm + 4 câu điền số)
-- **Đề Thi Thử Tổng Hợp Cả 4 Chương** (Ngân hàng 76 câu hỏi có đầy đủ lời giải KaTeX chi tiết từng bước)
+## ⚡ MỤC MỚI: CHUYÊN ĐỀ TRẮC NGHIỆM CÔNG THỨC (49 Câu Cốt Lõi)
+Trang web có riêng một mục chuyên đề **Trắc Nghiệm Công Thức** được thiết kế đặc thù nhằm giải quyết triệt để vấn đề "học trước quên sau" hoặc nhầm lẫn công thức:
+- 📌 **Nhận diện công thức đúng / sai:** Phân biệt dấu âm, bình phương $\omega^2$ vs $\omega$, chu kì con lắc đơn vs con lắc lò xo.
+- 📌 **Hệ thức độc lập & điều kiện:** Kiểm tra điều kiện cực đại/cực tiểu giao thoa sóng, sóng dừng 2 đầu cố định vs 1 đầu tự do, vị trí vân sáng/tối Young.
+- 📌 **Định luật & đại lượng:** Định luật Cu-lông, điện thế, điện dung và năng lượng tụ điện, định luật Ôm toàn mạch, đoản mạch, hiệu suất và định luật Joule-Lenz.
+- 🚀 **Cách mở nhanh:**
+  - Bấm thẻ **"⚡ TN Công Thức"** trên thanh điều hướng đầu trang.
+  - Hoặc chọn thẻ **"MỤC MỚI: CHUYÊN ĐỀ CÔNG THỨC"** màu cam nổi bật trong trung tâm trắc nghiệm.
+  - Hoặc chọn bộ lọc dạng câu **"⚡ Chuyên đề Công thức"** trước khi làm bài.
+
+---
+
+## 🎯 Hệ Thống 4 Chương Chi Tiết (124 Câu Ngân Hàng Mở Rộng)
+- **Chương I: Dao Động Điều Hòa** (31 câu: 17 TN + 6 Điền số + các câu công thức)
+- **Chương II: Sóng Cơ & Sóng Điện Từ** (31 câu: 17 TN + 6 Điền số + các câu công thức)
+- **Chương III: Điện Trường & Tụ Điện** (31 câu: 17 TN + 6 Điền số + các câu công thức)
+- **Chương IV: Dòng Điện Không Đổi & Mạch Điện** (31 câu: 17 TN + 6 Điền số + các câu công thức)
+- **Đề Thi Thử Tổng Hợp Cả 4 Chương** (Ngân hàng 124 câu hỏi có đầy đủ lời giải KaTeX chi tiết từng bước)
 
 ---
 
 ## 💡 Hai Chế Độ Làm Bài
 - ⚡ **Chế độ Luyện Tập (Xem giải ngay):** Báo Đúng ✅ / Sai ❌ tức thì và hiển thị ngay lời giải chi tiết từng bước.
 - ⏱️ **Chế độ Thi Thử (Bấm giờ):** Đồng hồ đếm ngược tự tính theo số lượng câu hỏi, bảng danh sách câu, gắn cờ câu phân vân ⭐, nộp bài chấm điểm thang 10 và xem lại các câu làm sai.
+
+---
+
+## 📱 Tối Ưu Hóa Hiển Thị Trên Điện Thoại Di Động & Webview
+- 📐 **Chống mất đầu công thức (Fix Negative Overflow):** Áp dụng kỹ thuật flex auto-margin kết hợp safe horizontal scroll. Các công thức toán dài sẽ tự động bắt đầu từ tọa độ `x = 0` (không bị cắt cụt vế trái khi mở bằng điện thoại hoặc trình duyệt in-app như Messenger, Zalo).
+- 🧩 **Định dạng công thức ghép thông minh:** Các công thức điều kiện cực đại/cực tiểu, sóng dừng, khoảng vân... được định dạng dưới dạng hệ ngoặc nhọn `\begin{cases}` 2 dòng gọn gàng, vừa khít màn hình dọc của smartphone.
+- 📑 **Thẻ hệ quả & Bảng kí hiệu co giãn mượt:** Tách từng dòng hệ quả thành các thẻ riêng biệt có thanh trượt ngang mượt mà, bảng đại lượng cố định bề rộng tối thiểu để không bị bẹp chữ trên màn hình nhỏ.

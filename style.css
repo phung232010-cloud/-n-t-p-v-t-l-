@@ -10,16 +10,90 @@ code, .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Smooth KaTeX display */
-.katex-display {
-  margin: 0.6em 0 !important;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 4px 0;
+/* Responsive KaTeX sizing */
+.katex {
+  font-size: 1.02em !important;
 }
 
-.katex {
-  font-size: 1.15em !important;
+@media (min-width: 640px) {
+  .katex {
+    font-size: 1.15em !important;
+  }
+}
+
+/* Smooth KaTeX display with safe scroll */
+.katex-display {
+  margin: 0.5em 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 4px 0 !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safe Math Scroll Container for Mobile - Prevents Negative Overflow Left-Clipping */
+.math-scroll-container {
+  display: flex !important;
+  align-items: center;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding: 0.65rem 0.5rem !important;
+  touch-action: pan-x pan-y;
+}
+
+.math-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+.math-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.math-scroll-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark .math-scroll-container::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* Flex auto-margin magic: centers when fitting, aligns left (x=0) when overflowing */
+.math-scroll-container > .math-inner,
+.math-scroll-container > .katex-display,
+.math-scroll-container > .katex,
+.math-scroll-container > span {
+  margin: auto !important;
+  min-width: max-content;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.math-scroll-container .katex-display {
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  display: inline-block !important;
+  min-width: max-content;
+}
+
+/* Better touch scrolling for code/formula containers */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.touch-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.touch-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.touch-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark .touch-scroll::-webkit-scrollbar-thumb {
+  background: #475569;
 }
 
 /* Custom Scrollbar */
