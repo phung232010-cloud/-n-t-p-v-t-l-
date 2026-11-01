@@ -272,7 +272,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5" id="quiz-chapter-cards">
           
           <!-- MỤC MỚI: CHUYÊN ĐỀ TRẮC NGHIỆM CÔNG THỨC (NỔI BẬT) -->
-          <div class="col-span-1 md:col-span-2 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border-2 border-amber-400 dark:border-amber-500/60 rounded-3xl p-6 sm:p-7 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group hover:shadow-lg transition">
+          <div class="quiz-chapter-card cursor-pointer col-span-1 md:col-span-2 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border-2 border-amber-400 dark:border-amber-500/60 rounded-3xl p-6 sm:p-7 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group hover:shadow-lg hover:border-amber-500 transition" data-chapter="formula">
             <div class="space-y-2.5">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm">
@@ -305,7 +305,7 @@
           </div>
 
           <!-- CHƯƠNG 1 -->
-          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border-l-4 border-l-blue-500">
+          <div class="quiz-chapter-card cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-500 transition-all flex flex-col justify-between group border-l-4 border-l-blue-500" data-chapter="1">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
@@ -335,7 +335,7 @@
           </div>
 
           <!-- CHƯƠNG 2 -->
-          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border-l-4 border-l-emerald-500">
+          <div class="quiz-chapter-card cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-emerald-500 transition-all flex flex-col justify-between group border-l-4 border-l-emerald-500" data-chapter="2">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900">
@@ -365,7 +365,7 @@
           </div>
 
           <!-- CHƯƠNG 3 -->
-          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border-l-4 border-l-purple-500">
+          <div class="quiz-chapter-card cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-purple-500 transition-all flex flex-col justify-between group border-l-4 border-l-purple-500" data-chapter="3">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-900">
@@ -395,7 +395,7 @@
           </div>
 
           <!-- CHƯƠNG 4 -->
-          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border-l-4 border-l-amber-500">
+          <div class="quiz-chapter-card cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-amber-500 transition-all flex flex-col justify-between group border-l-4 border-l-amber-500" data-chapter="4">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-900">
@@ -427,7 +427,7 @@
         </div>
 
         <!-- ĐỀ TỔNG HỢP CẢ 4 CHƯƠNG -->
-        <div class="bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-slate-900 dark:to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="quiz-chapter-card cursor-pointer bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-slate-900 dark:to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl hover:border-indigo-500 transition" data-chapter="all">
           <div class="space-y-2 text-center sm:text-left">
             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-slate-950">
               🏆 ĐỀ TỔNG HỢP TOÀN DIỆN (124 CÂU NGÂN HÀNG)
@@ -796,6 +796,130 @@
 
     </div>
   </footer>
+
+  <!-- QUIZ CONFIGURATION POPUP MODAL (HỎI CHƯƠNG NÀO & BAO NHIÊU CÂU TRƯỚC KHI BẮT ĐẦU) -->
+  <div id="quiz-config-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm transition-all duration-200">
+    <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl p-6 sm:p-7 max-h-[92vh] overflow-y-auto space-y-5">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-slate-100 dark:border-slate-800 pb-3.5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold shrink-0">
+            <i data-lucide="sliders" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white" id="modal-title">Cấu Hình Đề Luyện Tập</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Xác nhận nội dung và số lượng câu hỏi trước khi bắt đầu</p>
+          </div>
+        </div>
+        <button id="modal-close-btn" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Section 1: CHỌN CHƯƠNG NỘI DUNG -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <label for="modal-chapter-select" class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+            <i data-lucide="book-open" class="w-3.5 h-3.5 text-blue-600"></i>
+            <span>1. Bạn muốn luyện chương nào?</span>
+          </label>
+          <span id="modal-available-count" class="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/80 px-2.5 py-0.5 rounded-lg border border-blue-200 dark:border-blue-900">
+            Có sẵn: 31 câu
+          </span>
+        </div>
+        <select id="modal-chapter-select" class="w-full text-sm font-bold bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-2xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+          <option value="formula">⚡ Chuyên đề: Trắc nghiệm công thức (4 chương - 49 câu)</option>
+          <option value="1">Chương I: Dao động điều hòa (31 câu)</option>
+          <option value="2">Chương II: Sóng cơ & Sóng điện từ (31 câu)</option>
+          <option value="3">Chương III: Điện trường & Tụ điện (31 câu)</option>
+          <option value="4">Chương IV: Dòng điện không đổi & Mạch điện (31 câu)</option>
+          <option value="all">🏆 Đề thi thử tổng hợp cả 4 chương (124 câu)</option>
+        </select>
+      </div>
+
+      <!-- Section 2: CHỌN SỐ LƯỢNG CÂU HỎI -->
+      <div class="space-y-2">
+        <label class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+          <i data-lucide="hash" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span>2. Bạn muốn làm bao nhiêu câu?</span>
+        </label>
+        
+        <!-- Quick Chips for Question Count -->
+        <div class="grid grid-cols-4 gap-2" id="modal-count-chips">
+          <button type="button" class="modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="5">5 câu</button>
+          <button type="button" class="modal-count-chip active py-2 px-1 rounded-xl border-2 border-blue-600 bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300 font-bold text-xs text-center transition" data-count="10">10 câu</button>
+          <button type="button" class="modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="15">15 câu</button>
+          <button type="button" class="modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="20">20 câu</button>
+          <button type="button" class="modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="25">25 câu</button>
+          <button type="button" class="modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="30">30 câu</button>
+          <button type="button" class="modal-count-chip col-span-2 py-2 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300" data-count="all">Tất cả câu</button>
+        </div>
+        <input type="hidden" id="modal-selected-count" value="10" />
+      </div>
+
+      <!-- Section 3: CHẾ ĐỘ LÀM BÀI -->
+      <div class="space-y-2">
+        <label class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+          <i data-lucide="activity" class="w-3.5 h-3.5 text-amber-600"></i>
+          <span>3. Chế độ làm bài</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <label id="modal-mode-practice-label" class="modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-blue-600 bg-blue-50/70 dark:bg-blue-950/40 cursor-pointer transition select-none">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-blue-700 dark:text-blue-300 flex items-center gap-1">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> Luyện tập
+              </span>
+              <input type="radio" name="modal-quiz-mode" value="practice" checked class="w-4 h-4 text-blue-600 focus:ring-blue-500" />
+            </div>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">Xem đáp án & lời giải chi tiết ngay sau mỗi câu</span>
+          </label>
+
+          <label id="modal-mode-exam-label" class="modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 cursor-pointer transition select-none hover:border-slate-300">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+                <i data-lucide="timer" class="w-3.5 h-3.5"></i> Thi thử
+              </span>
+              <input type="radio" name="modal-quiz-mode" value="exam" class="w-4 h-4 text-blue-600 focus:ring-blue-500" />
+            </div>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">Bấm giờ đếm ngược (90s/câu), nộp bài chấm điểm 10</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Section 4: DẠNG CÂU HỎI & TÙY CHỌN -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+        <div>
+          <label for="modal-type-select" class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Dạng câu hỏi:</label>
+          <select id="modal-type-select" class="w-full text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">Tất cả dạng câu</option>
+            <option value="formula">⚡ Chuyên đề Công thức</option>
+            <option value="multiple_choice">Trắc nghiệm 4 lựa chọn (A, B, C, D)</option>
+            <option value="short_answer">Điền số kết quả (Trả lời ngắn)</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col justify-end">
+          <label class="flex items-center gap-2 cursor-pointer select-none bg-slate-50 dark:bg-slate-800 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <input type="checkbox" id="modal-shuffle-checkbox" checked class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" />
+            <span class="flex items-center gap-1"><i data-lucide="shuffle" class="w-3.5 h-3.5 text-blue-600"></i> Đảo đề ngẫu nhiên</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Modal Action Buttons -->
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3">
+        <button id="modal-cancel-btn" type="button" class="w-1/3 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs sm:text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          Hủy bỏ
+        </button>
+        <button id="modal-start-btn" type="button" class="w-2/3 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-xs sm:text-sm shadow-md shadow-blue-500/25 transition flex items-center justify-center gap-2">
+          <span>Bắt Đầu Làm Bài</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-4 opacity-0 pointer-events-none transition-all duration-300">

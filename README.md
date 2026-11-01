@@ -48,6 +48,20 @@ Ngay trên mỗi câu hỏi trả lời ngắn, hệ thống đều có bảng h
 
 ---
 
+## ⚙️ Cửa Sổ Cấu Hình Trước Khi Làm Bài (Hỏi Chương Nào & Làm Bao Nhiêu Câu)
+Khi bạn bấm vào **bất kỳ thẻ nào** (Chuyên đề Công thức, Chương I, Chương II, Chương III, Chương IV, hoặc Đề thi tổng hợp cả 4 chương, nút trên thanh điều hướng), hệ thống sẽ **luôn hiển thị một hộp thoại cấu hình trực quan** trước khi bắt đầu:
+1. **Chọn chương nội dung:** Tự động chọn sẵn chương tương ứng với thẻ bạn vừa bấm, đồng thời hiển thị số lượng câu hỏi hiện có sẵn (`Có sẵn: X câu`). Bạn có thể đổi sang chương khác ngay trong hộp thoại.
+2. **Chọn số lượng câu hỏi:** Các phím chọn nhanh: **5 câu**, **10 câu**, **15 câu**, **20 câu**, **25 câu**, **30 câu**, hoặc **Tất cả câu**.
+3. **Chọn chế độ làm bài:**
+   - ⚡ **Luyện tập:** Xem đáp án và lời giải chi tiết ngay sau mỗi câu trả lời.
+   - ⏱️ **Thi thử:** Bấm giờ đếm ngược (90 giây/câu), ẩn lời giải đến khi nộp bài để chấm điểm thang 10.
+4. **Tùy chọn nâng cao:**
+   - Chọn dạng câu hỏi: *Tất cả*, *⚡ Chuyên đề Công thức*, *Trắc nghiệm 4 lựa chọn*, hoặc *Điền số kết quả (Trả lời ngắn)*.
+   - Bật/tắt chế độ tự động xáo trộn đề và phương án trả lời.
+5. **Nút "Bắt Đầu Làm Bài" & "Hủy bỏ":** Nhấn để vào bài thi ngay hoặc đóng hộp thoại bằng phím `ESC` / bấm ra ngoài vùng mờ.
+
+---
+
 ## ⚡ MỤC MỚI: CHUYÊN ĐỀ TRẮC NGHIỆM CÔNG THỨC (49 Câu Cốt Lõi)
 Trang web có riêng một mục chuyên đề **Trắc Nghiệm Công Thức** được thiết kế đặc thù nhằm giải quyết triệt để vấn đề "học trước quên sau" hoặc nhầm lẫn công thức:
 - 📌 **Nhận diện công thức đúng / sai:** Phân biệt dấu âm, bình phương $\omega^2$ vs $\omega$, chu kì con lắc đơn vs con lắc lò xo.

@@ -193,7 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
       viewCalc.classList.add("hidden");
       viewCheatsheet.classList.add("hidden");
       if (listControls) listControls.classList.add("hidden");
-      startQuiz("formula");
+      initQuizHub();
+      openQuizConfigModal("formula");
       refreshIcons();
       return;
     }
@@ -628,6 +629,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const quizSubmitBtn = document.getElementById("quiz-submit-btn");
   const quizBackHubBtn = document.getElementById("quiz-back-hub-btn");
 
+  // Quiz Configuration Modal Elements
+  const quizConfigModal = document.getElementById("quiz-config-modal");
+  const modalCloseBtn = document.getElementById("modal-close-btn");
+  const modalCancelBtn = document.getElementById("modal-cancel-btn");
+  const modalStartBtn = document.getElementById("modal-start-btn");
+  const modalTitle = document.getElementById("modal-title");
+  const modalAvailableCount = document.getElementById("modal-available-count");
+  const modalChapterSelect = document.getElementById("modal-chapter-select");
+  const modalCountChips = document.querySelectorAll(".modal-count-chip");
+  const modalSelectedCount = document.getElementById("modal-selected-count");
+  const modalModePracticeLabel = document.getElementById("modal-mode-practice-label");
+  const modalModeExamLabel = document.getElementById("modal-mode-exam-label");
+  const modalTypeSelect = document.getElementById("modal-type-select");
+  const modalShuffleCheckbox = document.getElementById("modal-shuffle-checkbox");
+
   // Fisher-Yates array shuffle helper
   const shuffleArray = (array) => {
     const arr = [...array];
@@ -734,11 +750,192 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Start quiz buttons
-  document.querySelectorAll(".start-quiz-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const chapter = btn.dataset.chapter;
-      startQuiz(chapter);
+  // Dynamic calculation for available questions in modal
+  const updateModalStats = () => {
+    const ch = modalChapterSelect ? modalChapterSelect.value : "1";
+    const type = modalTypeSelect ? modalTypeSelect.value : "all";
+
+    const filtered = quizData.filter(q => {
+      if (ch === "formula") {
+        if (!q.isFormula) return false;
+      } else if (ch !== "all" && q.chapterId.toString() !== ch.toString()) {
+        return false;
+      }
+      if (type === "formula" && !q.isFormula) return false;
+      if (type === "multiple_choice" && q.type === "short_answer") return false;
+      if (type === "short_answer" && q.type !== "short_answer") return false;
+      return true;
+    });
+
+    const availableCount = filtered.length;
+    if (modalAvailableCount) {
+      modalAvailableCount.textContent = `Có sẵn: ${availableCount} câu`;
+    }
+
+    const titleMap = {
+      "formula": "⚡ Chuyên Đề: Trắc Nghiệm Công Thức",
+      "1": "Chương I: Dao Động Điều Hòa",
+      "2": "Chương II: Sóng Cơ & Sóng Điện Từ",
+      "3": "Chương III: Điện Trường & Tụ Điện",
+      "4": "Chương IV: Dòng Điện Không Đổi & Mạch Điện",
+      "all": "🏆 Đề Thi Thử Tổng Hợp Cả 4 Chương"
+    };
+    if (modalTitle) {
+      modalTitle.textContent = titleMap[ch] || "Cấu Hình Đề Luyện Tập";
+    }
+
+    // Dynamic count chip label for "all"
+    modalCountChips.forEach(chip => {
+      if (chip.dataset.count === "all") {
+        chip.textContent = `Tất cả (${availableCount} câu)`;
+      }
+    });
+  };
+
+  // Helper to select question count in modal
+  const selectModalCount = (targetCount) => {
+    if (modalSelectedCount) modalSelectedCount.value = targetCount;
+    modalCountChips.forEach(chip => {
+      const isSelected = (chip.dataset.count === targetCount);
+      const isAll = (chip.dataset.count === "all");
+      if (isSelected) {
+        chip.className = `modal-count-chip active py-2 px-1 rounded-xl border-2 border-blue-600 bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300 font-bold text-xs text-center transition ${isAll ? "col-span-2 px-2" : ""}`;
+      } else {
+        chip.className = `modal-count-chip py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-center transition hover:border-blue-500 text-slate-700 dark:text-slate-300 ${isAll ? "col-span-2 px-2" : ""}`;
+      }
+    });
+  };
+
+  // Helper to toggle mode in modal
+  const selectModalMode = (mode) => {
+    const practiceRadio = document.querySelector('input[name="modal-quiz-mode"][value="practice"]');
+    const examRadio = document.querySelector('input[name="modal-quiz-mode"][value="exam"]');
+    if (mode === "practice") {
+      if (practiceRadio) practiceRadio.checked = true;
+      if (modalModePracticeLabel) {
+        modalModePracticeLabel.className = "modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-blue-600 bg-blue-50/70 dark:bg-blue-950/40 cursor-pointer transition select-none";
+      }
+      if (modalModeExamLabel) {
+        modalModeExamLabel.className = "modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 cursor-pointer transition select-none hover:border-slate-300";
+      }
+    } else {
+      if (examRadio) examRadio.checked = true;
+      if (modalModeExamLabel) {
+        modalModeExamLabel.className = "modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-blue-600 bg-blue-50/70 dark:bg-blue-950/40 cursor-pointer transition select-none";
+      }
+      if (modalModePracticeLabel) {
+        modalModePracticeLabel.className = "modal-mode-option flex flex-col p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 cursor-pointer transition select-none hover:border-slate-300";
+      }
+    }
+  };
+
+  // Open Quiz Configuration Modal
+  const openQuizConfigModal = (initialChapter) => {
+    if (!quizConfigModal) return;
+    const ch = initialChapter || currentQuizChapter || "1";
+    if (modalChapterSelect) {
+      modalChapterSelect.value = ch;
+    }
+    if (modalTypeSelect) {
+      modalTypeSelect.value = (ch === "formula") ? "formula" : (quizTypeFilter || "all");
+    }
+
+    const currentCount = modalSelectedCount ? (modalSelectedCount.value || "10") : "10";
+    selectModalCount(currentCount);
+    selectModalMode(quizMode || "practice");
+    if (modalShuffleCheckbox && quizShuffleCheckbox) {
+      modalShuffleCheckbox.checked = quizShuffleCheckbox.checked;
+    }
+
+    updateModalStats();
+    quizConfigModal.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+    refreshIcons();
+  };
+
+  // Close Quiz Configuration Modal
+  const closeQuizConfigModal = () => {
+    if (!quizConfigModal) return;
+    quizConfigModal.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  };
+
+  // Bind modal event listeners
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeQuizConfigModal);
+  if (modalCancelBtn) modalCancelBtn.addEventListener("click", closeQuizConfigModal);
+  if (quizConfigModal) {
+    quizConfigModal.addEventListener("click", (e) => {
+      if (e.target === quizConfigModal) closeQuizConfigModal();
+    });
+  }
+
+  // Escape key closes modal
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && quizConfigModal && !quizConfigModal.classList.contains("hidden")) {
+      closeQuizConfigModal();
+    }
+  });
+
+  if (modalChapterSelect) {
+    modalChapterSelect.addEventListener("change", () => {
+      if (modalChapterSelect.value === "formula" && modalTypeSelect) {
+        modalTypeSelect.value = "formula";
+      }
+      updateModalStats();
+    });
+  }
+
+  if (modalTypeSelect) {
+    modalTypeSelect.addEventListener("change", updateModalStats);
+  }
+
+  modalCountChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      selectModalCount(chip.dataset.count);
+    });
+  });
+
+  document.querySelectorAll('input[name="modal-quiz-mode"]').forEach(radio => {
+    radio.addEventListener("change", (e) => {
+      selectModalMode(e.target.value);
+    });
+  });
+
+  if (modalModePracticeLabel) {
+    modalModePracticeLabel.addEventListener("click", () => selectModalMode("practice"));
+  }
+  if (modalModeExamLabel) {
+    modalModeExamLabel.addEventListener("click", () => selectModalMode("exam"));
+  }
+
+  // Start quiz button in modal
+  if (modalStartBtn) {
+    modalStartBtn.addEventListener("click", () => {
+      const ch = modalChapterSelect ? modalChapterSelect.value : "1";
+      const count = modalSelectedCount ? modalSelectedCount.value : "10";
+      const modeRadio = document.querySelector('input[name="modal-quiz-mode"]:checked');
+      const chosenMode = modeRadio ? modeRadio.value : "practice";
+      const chosenType = modalTypeSelect ? modalTypeSelect.value : "all";
+      const chosenShuffle = modalShuffleCheckbox ? modalShuffleCheckbox.checked : true;
+
+      // Sync settings to Hub controls
+      quizMode = chosenMode;
+      quizTypeFilter = chosenType;
+      if (quizCountSelect) quizCountSelect.value = count;
+      if (quizShuffleCheckbox) quizShuffleCheckbox.checked = chosenShuffle;
+      if (quizTypeSelect) quizTypeSelect.value = chosenType;
+
+      closeQuizConfigModal();
+      startQuiz(ch, count, chosenMode, chosenType, chosenShuffle);
+    });
+  }
+
+  // Handle clicking on cards or start buttons -> ALWAYS opens configuration modal
+  document.querySelectorAll(".quiz-chapter-card, .start-quiz-btn").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const chapter = el.dataset.chapter || el.closest("[data-chapter]")?.dataset.chapter || "1";
+      openQuizConfigModal(chapter);
     });
   });
 
@@ -771,12 +968,15 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshIcons();
   };
 
-  const startQuiz = (chapterId) => {
+  const startQuiz = (chapterId, customCount, customMode, customType, customShuffle) => {
     currentQuizChapter = chapterId;
 
-    // Get count and shuffle preferences
-    const reqCount = quizCountSelect ? quizCountSelect.value : "10";
-    const shuffleEnabled = quizShuffleCheckbox ? quizShuffleCheckbox.checked : true;
+    if (customMode) quizMode = customMode;
+    if (customType) quizTypeFilter = customType;
+    const reqCount = customCount || (quizCountSelect ? quizCountSelect.value : "10");
+    const shuffleEnabled = (customShuffle !== undefined) 
+      ? customShuffle 
+      : (quizShuffleCheckbox ? quizShuffleCheckbox.checked : true);
 
     // 1. Filter questions by chapter, level, and question type
     let candidates = quizData.filter(q => {
@@ -793,7 +993,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (candidates.length === 0) {
-      alert("Không có câu hỏi phù hợp với mức độ này trong chương đã chọn! Vui lòng chọn lại.");
+      alert("Không có câu hỏi phù hợp với cấu hình đã chọn! Vui lòng chọn lại.");
       return;
     }
 
@@ -833,7 +1033,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chapterNames = {
       1: "Chương I: Dao động điều hòa",
       2: "Chương II: Sóng cơ & Sóng điện từ",
-      3: "Chương III: Điện trường",
+      3: "Chương III: Điện trường & Tụ điện",
       4: "Chương IV: Dòng điện không đổi & Mạch điện",
       all: "Đề Thi Tổng Hợp Cả 4 Chương",
       formula: "⚡ Chuyên Đề: Trắc Nghiệm Công Thức (4 Chương)"
@@ -1417,8 +1617,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Result Action buttons
   document.getElementById("quiz-retry-btn")?.addEventListener("click", () => {
-    startQuiz(currentQuizChapter);
-    showToast("Đã đảo ngẫu nhiên đề thi & phương án trả lời! 🔀");
+    openQuizConfigModal(currentQuizChapter);
   });
 
   document.getElementById("quiz-filter-wrong-btn")?.addEventListener("click", (e) => {
