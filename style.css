@@ -1,0 +1,171 @@
+/* Custom styles for Vật Lý 11 Formula Hub */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+code, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Smooth KaTeX display */
+.katex-display {
+  margin: 0.6em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+
+.katex {
+  font-size: 1.15em !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 3D Flip Card for Flashcards */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Print Stylesheet for Cheat Sheet */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+  
+  .no-print, header, nav, #quick-calc-section, #flashcard-section, .filter-controls, footer, .bookmark-btn, .copy-btn {
+    display: none !important;
+  }
+  
+  #main-content {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .formula-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    margin-bottom: 15px !important;
+    page-break-inside: avoid;
+  }
+
+  .print-only-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .katex {
+    font-size: 1.05em !important;
+  }
+}
+
+.print-only-header {
+  display: none;
+}
+
+/* Quiz Option Styles */
+.quiz-opt {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.quiz-opt:hover:not(.disabled) {
+  transform: translateY(-1px);
+}
+.quiz-opt.selected {
+  border-color: #3b82f6 !important;
+  background-color: #eff6ff !important;
+}
+.dark .quiz-opt.selected {
+  border-color: #3b82f6 !important;
+  background-color: rgba(30, 58, 138, 0.35) !important;
+}
+.quiz-opt.correct {
+  border-color: #10b981 !important;
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+}
+.dark .quiz-opt.correct {
+  border-color: #10b981 !important;
+  background-color: rgba(6, 95, 70, 0.35) !important;
+  color: #6ee7b7 !important;
+}
+.quiz-opt.incorrect {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+  color: #991b1b !important;
+}
+.dark .quiz-opt.incorrect {
+  border-color: #ef4444 !important;
+  background-color: rgba(153, 27, 27, 0.35) !important;
+  color: #fca5a5 !important;
+}
+
+/* Question grid badges */
+.q-btn.current {
+  ring: 2px;
+  --tw-ring-color: #2563eb;
+  font-weight: 700;
+}
+.q-btn.answered {
+  background-color: #3b82f6;
+  color: white;
+}
+.q-btn.flagged {
+  border-color: #f59e0b !important;
+  position: relative;
+}
+.q-btn.flagged::after {
+  content: '★';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 9px;
+  color: #d97706;
+}
+
+
